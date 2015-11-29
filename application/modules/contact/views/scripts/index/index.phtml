@@ -1,0 +1,26 @@
+<?php
+Zend_Dojo::enableView($this);
+
+?>
+
+<h2>Contact us module</h2>
+<?php
+
+
+
+if($this->messageProcessed && $this->sendError){
+?>
+<p>sorry an error occured, contact bla@gmail.com</p>
+<?php
+}elseif($this->messageProcessed && !$this->sendError){
+?>
+<p>message send successfully</p>
+<?php    
+}else{
+?>
+<p>to send a message complete the form</p>
+<?php
+
+echo $this->form;
+}
+?>

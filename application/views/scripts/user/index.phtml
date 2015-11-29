@@ -1,0 +1,20 @@
+<h2>My Account</h2>
+<?php if($this->identity == null) { ?>
+    <p>To log in <a href='/user/login'>click here</a></p>
+<?php }else{ ?>
+    <p>Welcome back <b><?php echo $this->identity->first_name;
+       /*
+        echo "<br/>$ this->identiy <br/>";
+        echo "<pre>";
+        var_dump($this->identity);
+       
+        echo "</pre>";
+        echo "<br/>$ this->getStorage() <br/>";
+        echo "<pre>";
+        var_dump($this->storage);
+        echo "</pre>";
+         */
+        ?></b></p>
+    
+    <p>To log out <a href='/user/logout'>click here</a></p>
+<?php } ?>

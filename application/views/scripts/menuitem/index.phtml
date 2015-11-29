@@ -1,0 +1,32 @@
+<h2>Manage menu items</h2>
+<p>current menu is: <?php echo $this->menu->name; ?></p>
+
+<?php
+if($this->menuItems != null){
+?>   
+<table>
+    <tr>
+        <th>links</th>
+        <th>label</th>
+        <th>page</th>
+        <th>link</th>
+    </tr>    
+ 
+<?php echo $this->partialLoop('partials/_menu-item-row.phtml', $this->menuItems); ?>
+<?php  
+}else{
+    echo "<p>this menu does not have any items yet </p>";
+}
+?>
+</table>
+<p><a href="/menuitem/add/menu/<?php echo $this->menu->id; ?>"> add a new menu Item</a></p>
+
+
+
+<?php 
+/*
+echo "*************";
+echo "<pre>";
+var_dump($this->menuItems);
+echo "</pre>";
+ */?>

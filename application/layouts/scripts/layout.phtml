@@ -1,0 +1,91 @@
+<html>
+<head> 
+<?php
+
+echo $this->doctype();
+$this->layout()->nav = $this->action('render', 'menu', null,
+    array('menu' => $this->mainMenuId));
+$this->layout()->adminMenu = $this->action(
+    'render', 'menu', null, array('menu' => $this->adminMenuId));
+    
+//gia login form
+$this->layout()->userForm = $this->action("index", "user");
+
+// atempt to load bootstrap
+/*
+$this->headLink()->appendStylesheet('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css');
+$this->headLink()->appendStylesheet("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css");
+$this->headScript()->appendFile("http://code.jquery.com/jquery-1.11.0.min.js");
+$this->headScript()->appendFile("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js");
+*/
+
+?>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+<?php
+echo $this->headTitle();
+
+// dojo load
+if ($this->dojo()->isEnabled()){
+    echo $this->dojo();
+}
+
+// add a link to the site style sheet
+$this->headLink()->appendStylesheet('/css/layout.css');
+
+$this->loadSkin($this->skin);
+echo $this->headLink();
+echo $this->headScript();
+?>
+</head>
+
+<body class="claro">
+<div id="pageWrapper">
+	<div id="header">
+		<h1>Zend Framework </h1>
+	</div>
+	
+	<div id="nav">
+		<?php 
+		//echo "menu: ".$this->mainMenuId;
+        echo $this->baseUrl();
+		echo $this->layout()->nav;
+         ?>&nbsp;
+	</div>
+	<div id="searchForm">
+	    <h2>Search Site</h2>
+	    <?php
+	    $searchForm = new Form_SearchForm();
+        $searchForm->setAction('/search');
+        echo $searchForm;
+	    ?>
+	</div>
+	<div id="sidebar">
+		<div id="subNav">
+			<?php echo $this->layout()->subNav; ?>&nbsp;
+		</div>
+		
+		<div id="adminMenu">
+			<?php echo $this->layout()->adminMenu; ?>&nbsp;
+		</div>
+		
+		<div id="userForm">
+			<?php
+			//echo $this->gravatar('dimkoko@hotmail.gr');
+			echo $this->doctype()->getDoctype();
+			//echo "baseUrl: ".$this->baseUrl("/users");
+			echo $this->layout()->userForm; ?>&nbsp;
+		</div>
+		
+	</div>
+	
+	<div id="main">
+		<?php echo $this->layout()->content ?>&nbsp;
+	</div>
+	<div id="footer">
+		<p><em>Powered by Zend-version: <?php echo Zend_Version::VERSION ?></em></p>
+	</div>
+</div>
+
+
+</body>
+</html>
